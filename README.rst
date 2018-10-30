@@ -19,19 +19,20 @@ To do
 -----
 
 - literature review
-  - read relevant articles and resources
+	- read relevant articles and resources
+
 - pipeline
-  - data import/handling
-  - dummy model
-  - submission example
-  - API example with photo import
+	- data import/handling
+	- dummy model
+	- submission example
+	- API example with photo import
 
 - improvement
-  - feature engineering + classical model
-  - transfer learning
+	- feature engineering + classical model
+	- transfer learning
 
 - delivery
-  - API with good level model, online
+	- API with good level model, online
 
 
 
@@ -139,6 +140,7 @@ Argument 1
 
 | Type: `String`  
 | Default: `'default value'`
+|
 
 State what an argument does and how you can use it. If needed, you can provide
 an example below.
@@ -153,7 +155,7 @@ Argument 2
 
 | Type: `Number|Boolean`  
 | Default: 100
-
+|
 
 Copy-paste as many of these as you need.
 
@@ -188,6 +190,7 @@ links to humans using your project. You can include links like:
 - Repository: https://github.com/your/awesome-project/
 
 - Issue tracker: https://github.com/your/awesome-project/issues
+
 	- In case of sensitive bugs like security vulnerabilities, please contact
 	  my@email.com directly instead of using issue tracker. We value your effort
 	  to improve the security and privacy of this project!
