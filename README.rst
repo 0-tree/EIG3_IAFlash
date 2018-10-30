@@ -16,7 +16,7 @@ To do
 -----
 
 - literature review
-	- read relevant articles and resources
+  - read relevant articles and resources
 
 - pipeline
 	- data import/handling
