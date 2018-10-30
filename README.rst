@@ -16,7 +16,7 @@ To do
 -----
 
 - literature review
-  - read relevant articles and resources
+	- read relevant articles and resources
 
 - pipeline
 	- data import/handling
@@ -57,11 +57,11 @@ Installing / Getting started
 A quick introduction of the minimal setup you need to get a hello world up &
 running.
 
-```shell
-packagemanager install awesome-project
-awesome-project start
-awesome-project "Do something!"  # prints "Nah."
-```
+::
+	packagemanager install awesome-project
+	awesome-project start
+	awesome-project "Do something!"  # prints "Nah."
+
 
 Here you should say what actually happens when you execute the code above.
 
@@ -176,11 +176,13 @@ format like in a .json file, it's good to include a summary of most useful
 links to humans using your project. You can include links like:
 
 - Project homepage: https://your.github.com/awesome-project/
+
 - Repository: https://github.com/your/awesome-project/
 - Issue tracker: https://github.com/your/awesome-project/issues
   - In case of sensitive bugs like security vulnerabilities, please contact
     my@email.com directly instead of using issue tracker. We value your effort
     to improve the security and privacy of this project!
+
 - Related projects:
   - Your other project: https://github.com/your/other-project/
   - Someone else's project: https://github.com/someones/awesome-project/
