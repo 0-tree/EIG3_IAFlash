@@ -62,7 +62,26 @@ None.
 References
 ++++++++++
 
-None.
+Data
+----
+
+- we work on an `open car dataset <http://ai.stanford.edu/~jkrause/cars/car_dataset.html>`_ from Stanford.
+
+- other sources:
+
+  - `CompCar <http://mmlab.ie.cuhk.edu.hk/datasets/comp_cars/index.html>`_ dataset (needs to contact the authors).
+
+
+Pre-trained models
+------------------
+
+- `GoogLeNet_cars <https://modelzoo.co/model/googlenet_cars-on-car-model-classification>`_ (trained on CompCar).
+
+
+Ideas
+-----
+
+- this `attempt <https://groups.google.com/forum/#!topic/keras-users/RaWM-FJl9II>`_ to use InceptionV3 on the car dataset.
 
 
 
