@@ -1,4 +1,7 @@
 
+.. markdown version of this readme here: https://github.com/jehna/readme-best-practices/blob/master/README-default.md
+
+
 .. image:: logo.png
     :width: 200px
     :align: center
@@ -20,21 +23,27 @@ Roadmap
 To do
 -----
 
-- literature review
-	- read relevant articles and resources
+.. nested lists must have a line space between parent and child
+
+- literature review 
+
+  - read relevant articles and resources
 
 - pipeline
-	- data import/handling
-	- dummy model
-	- submission example
-	- API example with photo import
+
+  - data import/handling
+  - dummy model
+  - submission example
+  - API example with photo import
 
 - improvement
-	- feature engineering + classical model
-	- transfer learning
+
+  - feature engineering + classical model
+  - transfer learning
 
 - delivery
-	- API with good level model, online
+
+  - API with good level model, online
 
 
 
@@ -42,6 +51,7 @@ Processing
 ----------
 
 None.
+
 
 Done
 ----
@@ -61,6 +71,8 @@ Installing / Getting started
 
 A quick introduction of the minimal setup you need to get a hello world up &
 running.
+
+.. code paragraph must have a line space after the double:
 
 ::
 
@@ -140,8 +152,8 @@ using the project.
 Argument 1
 ----------
 
-| Type: `String`  
-| Default: `'default value'`
+| Type: ``String``
+| Default: ``'default value'``
 |
 
 State what an argument does and how you can use it. If needed, you can provide
@@ -155,7 +167,7 @@ Example::
 Argument 2
 ----------
 
-| Type: `Number|Boolean`  
+| Type: ``Number/Boolean``
 | Default: 100
 |
 
@@ -193,9 +205,9 @@ links to humans using your project. You can include links like:
 
 - Issue tracker: https://github.com/your/awesome-project/issues
 
-	- In case of sensitive bugs like security vulnerabilities, please contact
-	  my@email.com directly instead of using issue tracker. We value your effort
-	  to improve the security and privacy of this project!
+  - In case of sensitive bugs like security vulnerabilities, please contact
+	my@email.com directly instead of using issue tracker. We value your effort
+	to improve the security and privacy of this project!
 
 - Related projects:
 
@@ -211,3 +223,7 @@ state what the license is and how to find the text version of the license.
 Something like:
 
 "The code in this project is licensed under MIT license."
+
+
+.. END
+
