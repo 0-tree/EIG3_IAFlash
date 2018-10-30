@@ -16,20 +16,19 @@ To do
 -----
 
 - literature review
-	- read relevant articles and resources
-
+  - read relevant articles and resources
 - pipeline
-	- data import/handling
-	- dummy model
-	- submission example
-	- API example with photo import
+  - data import/handling
+  - dummy model
+  - submission example
+  - API example with photo import
 
 - improvement
-	- feature engineering + classical model
-	- transfer learning
+  - feature engineering + classical model
+  - transfer learning
 
 - delivery
-	- API with good level model, online
+  - API with good level model, online
 
 
 
@@ -58,6 +57,7 @@ A quick introduction of the minimal setup you need to get a hello world up &
 running.
 
 ::
+
 	packagemanager install awesome-project
 	awesome-project start
 	awesome-project "Do something!"  # prints "Nah."
@@ -145,8 +145,8 @@ awesome-project "Some other value"  # Prints "You're nailing this readme!"
 Argument 2
 ----------
 
-Type: `Number|Boolean`  
-Default: 100
+| Type: `Number|Boolean`  
+| Default: 100
 
 Copy-paste as many of these as you need.
 
