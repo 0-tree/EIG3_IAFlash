@@ -8,7 +8,9 @@
 EIG3_IAFlash
 ============
 
-A simple showcase of ideas for the `AIFlash` project.
+	Preventing the burden of false contravensions.
+
+This project is a simple showcase of ideas for the `AIFlash` project.
 
 
 Roadmap
@@ -196,8 +198,9 @@ links to humans using your project. You can include links like:
 	  to improve the security and privacy of this project!
 
 - Related projects:
-	- Your other project: https://github.com/your/other-project/
-	- Someone else's project: https://github.com/someones/awesome-project/
+
+  - Your other project: https://github.com/your/other-project/
+  - Someone else's project: https://github.com/someones/awesome-project/
 
 
 Licensing
