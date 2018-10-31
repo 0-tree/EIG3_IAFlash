@@ -1,5 +1,7 @@
 numpy
-pandas
 time
+re
 pickle
 PIL
+scipy.io
+keras

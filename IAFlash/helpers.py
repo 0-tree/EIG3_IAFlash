@@ -1,9 +1,9 @@
 
 
 import os
-import re
+import numpy as np
+
 from PIL import Image
-import xml.etree.ElementTree
 import scipy.io # used to import .mat files with scipy.io.loadmat (see [here](https://stackoverflow.com/questions/874461/read-mat-files-in-python))
 
 
@@ -13,12 +13,15 @@ import scipy.io # used to import .mat files with scipy.io.loadmat (see [here](ht
 
 class DataHandler:
     
-    def __init__(self, pathToDataDir):
+    def __init__(self, pathToDataDir, pctValidationInTest):
         '''
         Inputs
         ------
         pathToDataDir : str
             path to the directory containing Images/ Annotations/ Lists/ etc.
+        pctValidationInTest : float in [0.,1.]
+            which fraction of test data to keep for validation? This
+            will be done at random, and depends on the seed.
 
         Notes
         -----
@@ -26,7 +29,9 @@ class DataHandler:
           downloaded directory
         '''
 
-        self.pathToDataDir = pathToDataDir   
+        self.pathToDataDir = pathToDataDir
+        self.pctValidationInTest = pctValidationInTest
+        
         self.pathToDataPatchDir = os.path.join(pathToDataDir, 'Patches') 
         # str : directory where patches are saved
         
@@ -49,7 +54,13 @@ class DataHandler:
                                   int(x[4][0,0])) for x in cars_annos['annotations'][0,:]]
         self._cars_annos_files = [x[0][0] for x in cars_annos['annotations'][0,:]]
         self._cars_annos_labels = [x[5][0,0]-1 for x in cars_annos['annotations'][0,:]] # NB: change to 0-based index
-        self._cars_annos_isTest = [1 == x[6][0,0] for x in cars_annos['annotations'][0,:]]
+        self._cars_annos_subset = [x[6][0,0] for x in cars_annos['annotations'][0,:]]
+        # list : 0 if train, 1 if test -> then changed to 0 train, 1 validation, 2 test:
+        for i,x in enumerate(self._cars_annos_subset.copy()):
+            if 1 == x:
+                makeValidation = np.random.choice([True,False],1,p=[self.pctValidationInTest,1-self.pctValidationInTest])[0]
+                if not makeValidation:
+                    self._cars_annos_subset[i] = 2
         self._cars_annos_classnames = [x[0] for x in cars_annos['class_names'][0,:]]
             
     
@@ -75,7 +86,7 @@ class ImageWorker:
         self.label = self._dh._cars_annos_labels[index]
         self.labelName = self._dh._cars_annos_classnames[self.label]
         self.bbox = self._dh._cars_annos_bbox[index]
-        self.isTest = self._dh._cars_annos_isTest[index]
+        self.subset = self._dh._cars_annos_subset[index]
         
         self.pathToImage = os.path.join(self._dh.pathToDataDir, self._fileName)
         for _p in (self.pathToImage,):
@@ -139,7 +150,7 @@ class ImageWorker:
         
  
     
-    def savePatch(self,method='oneDirPerClass'):
+    def savePatch(self, method='oneDirPerClass'):
         '''
         save the patch to disk
         
@@ -147,22 +158,25 @@ class ImageWorker:
         ------
         method : str in ('oneDirPerClass',)
             - 'oneDirPerClass' saves the patch to a directory of the form
-              root/macroparam/isTest/labelName/file.png
+              root/macroparam/subset/labelName/file.png
         '''
         if method == 'oneDirPerClass':
             
             macroparam = ''
             for k in ('edge','bw','resampleFilter'):
                 macroparam += k+str(getattr(self,k))
-            if self.isTest:
-                isTest = 'Test'
-            else:
-                isTest = 'Train'
+            if 0 == self.subset:
+                subset = 'Train'
+            elif 1 == self.subset:
+                subset = 'Validation'
+            elif 2 == self.subset:
+                subset = 'Test'
+                
             labelName = self.labelName
             
             p = os.path.join(self._dh.pathToDataPatchDir,
                              macroparam,
-                             isTest,
+                             subset,
                              labelName)
             if not os.path.isdir(p):
                 os.makedirs(p)
