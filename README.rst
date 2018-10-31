@@ -82,7 +82,7 @@ Ideas
 -----
 
 - this `attempt <https://groups.google.com/forum/#!topic/keras-users/RaWM-FJl9II>`_ to use InceptionV3 on the car dataset.
-
+- a `Kaggle kernel <https://www.kaggle.com/jutrera/training-a-densenet-for-the-stanford-car-dataset>`_ using Dense-121.
 
 
 Installing / Getting started
