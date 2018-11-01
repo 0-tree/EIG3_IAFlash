@@ -5,3 +5,4 @@ pickle
 PIL
 scipy.io
 keras
+sklearn
