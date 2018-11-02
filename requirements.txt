@@ -6,3 +6,4 @@ PIL
 scipy.io
 keras
 sklearn
+scikit-image
