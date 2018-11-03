@@ -32,3 +32,5 @@ def pcaPlot(X3,col,title=''):
     ax.set_ylabel(2, fontsize = 15)
 #     ax.set_xlim(-4,8)
 #     ax.set_ylim(-2,2)
+
+    plt.show()
