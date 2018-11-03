@@ -61,7 +61,7 @@ class DataHandler:
                 makeValidation = np.random.choice([True,False],1,p=[self.pctValidationInTest,1-self.pctValidationInTest])[0]
                 if not makeValidation:
                     self._cars_annos_subset[i] = 2
-        self._cars_annos_classnames = [x[0] for x in cars_annos['class_names'][0,:]]
+        self._cars_annos_classnames = [x[0].replace('/','-') for x in cars_annos['class_names'][0,:]] # need to replace '/' which breaks paths !
             
     
     
