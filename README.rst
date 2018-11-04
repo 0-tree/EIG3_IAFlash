@@ -31,6 +31,10 @@ As such, this project shows examples of:
 | Each example is treated in a dedicated Jupyter notebook in the ``IAFlash`` directory.
 | Please note that given the short amount of time available, these notebooks should be considered as *examples* and not a final product.
 
+
+A short presentation is also available `here <https://slides.com/tree_0/iaflash/>`_.
+
+
 Roadmap
 +++++++
 
