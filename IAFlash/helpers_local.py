@@ -7,8 +7,6 @@ from PIL import Image
 import scipy.io # used to import .mat files with scipy.io.loadmat (see [here](https://stackoverflow.com/questions/874461/read-mat-files-in-python))
 
 
-
-
 #%%
 
 class DataHandler:
