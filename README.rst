@@ -28,7 +28,7 @@ As such, this project shows examples of:
 - using expert-crafted feature extraction and clustering to label unlabelled data
 - scrapping web sources to build a custom labelled dataset 
 
-| Each example is treated in a dedicated Jupyter notebook in the `IAFlash` directory.
+| Each example is treated in a dedicated Jupyter notebook in the ``IAFlash`` directory.
 | Please note that given the short amount of time available, these notebooks should be considered as *examples* and not a final product.
 
 Roadmap
