@@ -2,9 +2,16 @@
 import os
 from PIL import Image
 
+from keras.models import Model
+from keras.layers import Input, Dense, Activation, Concatenate, \
+							Flatten, Conv2D, AveragePooling2D, MaxPooling2D
+from keras.regularizers import l1, l2, l1_l2
+
 import matplotlib.pyplot as plt
 from matplotlib import cm
 
+
+#%% PLOTS
 
 #%%
 
@@ -38,6 +45,7 @@ def pcaPlot(X3,col,title=''):
     plt.show()
 
 
+#%% DATA HANDLERS
 
 #%%
 
@@ -47,7 +55,7 @@ class OneClassPerDirImageHandler:
         '''
         Inputs
         ------
-        pathToDataDir : str
+        `pathToDataDir` : str
             path to the directory containing one directory per class
             and all images in each one of these subsirectories.
         '''
@@ -79,10 +87,10 @@ class OneClassPerDirImageHandler:
 
         Inputs
         ------
-        classId : int or str
+        `classId` : int or str
             if int, index of the class as in classDict;
             if str, name of the self.classDictInv
-        numId : int, list of int, or 'all'
+        `numId` : int, list of int, or 'all'
             if int, index of the image in its class. Should be lower than self.nbPerClass[classId].
             if 'all', will return all images for that class.
         '''
@@ -122,4 +130,74 @@ class OneClassPerDirImageHandler:
         return(ls_im)
      
 #%%
+
+#%% MODELS
+
+#%%
+
+
+def scaleConvNet1_image(edge, nbClass, nScale, filters):
+    '''
+    a convolutional network for square images, acting as a one layer filter
+    for different scales in parralel, rather than acting in a cascade way.
+
+    Inputs
+    ------
+    `edge` : int
+        edge of the square images.
+    `nbClass` : int
+        number of outputs in the final layer.
+    `nbScale` : int
+		number of scales to be treated. Lower scales are obtained
+		by subsampling using an average pooling layer.
+	`filters` : int
+		number of filters to apply at each scale (the `filters`
+		parameters for layers like `Conv2D`).
+    '''
+    
+    # NB: quantities to make input someday...
+    kernel_size = 2**4  # medium-sized coverage
+    strides = 2       # should be enough to keep ~ translation invariance (no interval left uncovered)
+    l1Reg = 0.00      # to be tested...
+    # multDense = 1     # used for the final MLP    
+
+    #--- design   
+    In = Input((edge,edge,1))
+    Scale = []
+    
+    L = In
+    for i in range(nScale):
+        # convolution part (may use more fancy filters later)
+        Conv = Conv2D(filters=filters,
+                      kernel_size=kernel_size,
+                      strides=strides,
+                      padding='same',
+                      activation='relu',
+                      # activation='tanh',
+                      use_bias=False)(L)
+#         Conv = AveragePooling2D(pool_size=int(Conv.shape[1]))(Conv)
+        Conv = MaxPooling2D(pool_size=int(Conv.shape[1]))(Conv)
+        Conv = Flatten()(Conv)
+        Scale.append(Conv)
+        # subsampling part
+        L = AveragePooling2D(pool_size=2)(L)
+    
+    Out = Concatenate(axis=-1)(Scale) # note: does not work if len(Out)==1
+    
+    # Out = Dense(multDense*(nScale*filters),activation='relu')(Out)
+    # Out = Dense(multDense*(nScale*filters),activation='relu')(Out)
+    Out = Dense(nbClass,
+                activation='softmax',
+                kernel_regularizer=l1(l1Reg))(Out)
+    
+    model = Model(inputs=[In],outputs=[Out])
+            
+    #--- compilation
+    model.compile(optimizer='rmsprop',
+                  loss='categorical_crossentropy', # IAH: change the loss later if possible
+                  metrics=['categorical_accuracy'])
+
+    #--- return
+    model.summary()
+    return model    
                 
