@@ -8,13 +8,28 @@
     :height: 100px
 
 
-EIG3_IAFlash
-============
+EIG3_IAFlash - Car Model Detection
+==================================
 
-	Preventing the burden of false contravensions.
+  Preventing the burden of false contraventions by detecting cars models in radar snapshots.
 
-This project is a simple showcase of ideas for the `AIFlash` project.
+| This project acts as a simple showcase of ideas for the `AIFlash <https://entrepreneur-interet-general.etalab.gouv.fr/defis/2019/iaflash.html>`_ project (*November 2018*).
+| It can also be seen as an overview of possible work when dealing with **images**, and here specifically car model detection.
 
+
+Features
+++++++++
+
+
+As such, this project shows examples of:
+
+- downloading and processing data from an existing open dataset
+- using transfer learning to classify cars from labelled data
+- using expert-crafted feature extraction and clustering to label unlabelled data
+- scrapping web sources to build a custom labelled dataset 
+
+| Each example is treated in a dedicated Jupyter notebook in the `IAFlash` directory.
+| Please note that given the short amount of time available, these notebooks should be considered as *examples* and not a final product.
 
 Roadmap
 +++++++
@@ -25,26 +40,7 @@ To do
 
 .. nested lists must have a line space between parent and child
 
-- literature review 
-
-  - read relevant articles and resources
-
-- pipeline
-
-  - data import/handling
-  - dummy model
-  - submission example
-  - API example with photo import
-
-- improvement
-
-  - feature engineering + classical model
-  - transfer learning
-
-- delivery
-
-  - API with good level model, online
-
+- improve performances
 
 
 Processing
@@ -56,7 +52,12 @@ None.
 Done
 ----
 
-None.
+- literature review 
+- handling the  `cars <http://ai.stanford.edu/~jkrause/cars/car_dataset.html>`_ dataset
+- try transfer learning
+- try 'classical' feature extractors and image clustering
+- try web scrapping
+- cleanup
 
 
 References
@@ -67,7 +68,7 @@ Data
 
 - we work on an `open car dataset <http://ai.stanford.edu/~jkrause/cars/car_dataset.html>`_ from Stanford.
 
-- other sources:
+- other potential sources:
 
   - `CompCar <http://mmlab.ie.cuhk.edu.hk/datasets/comp_cars/index.html>`_ dataset (needs to contact the authors).
 
@@ -75,174 +76,13 @@ Data
 Pre-trained models
 ------------------
 
-- `GoogLeNet_cars <https://modelzoo.co/model/googlenet_cars-on-car-model-classification>`_ (trained on CompCar).
-
-
-Ideas
------
-
-- this `attempt <https://groups.google.com/forum/#!topic/keras-users/RaWM-FJl9II>`_ to use InceptionV3 on the car dataset.
-- a `Kaggle kernel <https://www.kaggle.com/jutrera/training-a-densenet-for-the-stanford-car-dataset>`_ using Dense-121.
-
-
-Installing / Getting started
-++++++++++++++++++++++++++++
-
-A quick introduction of the minimal setup you need to get a hello world up &
-running.
-
-.. code paragraph must have a line space after the double:
-
-::
-
-	packagemanager install awesome-project
-	awesome-project start
-	awesome-project "Do something!"  # prints "Nah."
-
-
-Here you should say what actually happens when you execute the code above.
-
-Initial Configuration
-+++++++++++++++++++++
-
-Some projects require initial configuration (e.g. access tokens or keys, `npm i`).
-This is the section where you would document those requirements.
-
-Developing
-++++++++++
-
-Here's a brief intro about what a developer must do in order to start developing
-the project further:
-
-::
-
-	git clone https://github.com/your/awesome-project.git
-	cd awesome-project/
-	packagemanager install
-
-
-And state what happens step-by-step.
-
-
-Building
-++++++++
-
-If your project needs some additional steps for the developer to build the
-project after some code changes, state them here:
-
-::
-
-	./configure
-	make
-	make install
-
-
-Here again you should state what actually happens when the code above gets
-executed.
-
-
-Deploying / Publishing
-++++++++++++++++++++++
-
-In case there's some step you have to take that publishes this project to a
-server, this is the right time to state it.
-
-::
-
-	packagemanager deploy awesome-project -s server.com -u username -p password
-
-
-And again you'd need to tell what the previous code actually does.
-
-Features
-++++++++
-
-What's all the bells and whistles this project can perform?
-* What's the main functionality
-* You can also do another thing
-* If you get really randy, you can even do this
-
-Configuration
-+++++++++++++
-
-Here you should write what are all of the configurations a user can enter when
-using the project.
-
-Argument 1
-----------
-
-| Type: ``String``
-| Default: ``'default value'``
-|
-
-State what an argument does and how you can use it. If needed, you can provide
-an example below.
-
-Example::
-
-	awesome-project "Some other value"  # Prints "You're nailing this readme!"
-
-
-Argument 2
-----------
-
-| Type: ``Number/Boolean``
-| Default: 100
-|
-
-Copy-paste as many of these as you need.
-
-Contributing
-++++++++++++
-
-When you publish something open source, one of the greatest motivations is that
-anyone can just jump in and start contributing to your project.
-
-These paragraphs are meant to welcome those kind souls to feel that they are
-needed. You should state something like:
-
-"If you'd like to contribute, please fork the repository and use a feature
-branch. Pull requests are warmly welcome."
-
-If there's anything else the developer needs to know (e.g. the code style
-guide), you should link it here. If there's a lot of things to take into
-consideration, it is common to separate this section to its own file called
-`CONTRIBUTING.md` (or similar). If so, you should say that it exists here.
-
-
-Links
-+++++
-
-
-Even though this information can be found inside the project on machine-readable
-format like in a .json file, it's good to include a summary of most useful
-links to humans using your project. You can include links like:
-
-- Project homepage: https://your.github.com/awesome-project/
-
-- Repository: https://github.com/your/awesome-project/
-
-- Issue tracker: https://github.com/your/awesome-project/issues
-
-  - In case of sensitive bugs like security vulnerabilities, please contact
-	my@email.com directly instead of using issue tracker. We value your effort
-	to improve the security and privacy of this project!
-
-- Related projects:
-
-  - Your other project: https://github.com/your/other-project/
-  - Someone else's project: https://github.com/someones/awesome-project/
+- we use some of the models from the Keras `model zoo <https://keras.io/applications/>`_ (trained on ImageNet).
 
 
 Licensing
 +++++++++
 
-One really important part: Give your project a proper license. Here you should
-state what the license is and how to find the text version of the license.
-Something like:
-
-"The code in this project is licensed under MIT license."
+The code in this project is licensed under GNU General Public License v3.0.
 
 
 .. END
-
